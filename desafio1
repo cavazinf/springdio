@@ -1,0 +1,41 @@
+Desafio 1:
+Para este desafio, você deseja receber uma lista de longs, incrementar 1 em cada valor e retornar um fluxo dos resultados. Aqui está um exemplo de código que faz isso:
+
+java
+Copy code
+import reactor.core.publisher.Flux;
+
+public class Desafio1 {
+    public Flux<Long> incrementaValores(List<Long> valores) {
+        return Flux.fromIterable(valores)
+                .map(valor -> valor + 1);
+    }
+}
+Desafio 2:
+Para o segundo desafio, você precisa receber uma lista de usuários e contar quantos deles têm a função de "admin". Supondo que você tenha uma classe Usuario com um atributo isAdmin(), você pode fazer algo assim:
+
+java
+Copy code
+import reactor.core.publisher.Flux;
+import java.util.List;
+
+public class Desafio2 {
+    public long contarAdmins(List<Usuario> usuarios) {
+        return Flux.fromIterable(usuarios)
+                .filter(Usuario::isAdmin)
+                .count()
+                .block();
+    }
+}
+Desafio 3:
+Para o terceiro desafio, você deseja verificar se um usuário é válido com base em sua senha. Se a senha tiver mais de 8 caracteres, o usuário é considerado válido; caso contrário, você deve lançar uma exceção. Aqui está um exemplo de código:
+
+java
+Copy code
+public class Desafio3 {
+    public void validarUsuario(Usuario usuario) {
+        if (usuario.getSenha().length() <= 8) {
+            throw new SenhaInvalidaException("A senha deve ter mais de 8 caracteres");
+        }
+    }
+}
