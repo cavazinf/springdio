@@ -1,0 +1,65 @@
+API de jogo de bingo usando o Spring WebFlux. Aqui está um exemplo simplificado para começar:
+
+Passo 1: Configuração do Projeto
+
+Primeiro, certifique-se de criar um projeto Spring Boot com o Spring WebFlux usando uma ferramenta como o Spring Initializer ou o seu IDE preferido.
+
+Passo 2: Modelagem de Dados
+
+Crie classes para representar os elementos do jogo, como Cartela e Jogador.
+
+java
+Copy code
+public class Cartela {
+    private List<Integer> numeros;
+    
+    // getters e setters
+}
+
+public class Jogador {
+    private String nome;
+    private Cartela cartela;
+    
+    // getters e setters
+}
+Passo 3: Controladores e Endpoints
+
+Crie controladores Spring WebFlux e defina os endpoints da API em uma classe como esta:
+
+java
+Copy code
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@RestController
+@RequestMapping("/bingo")
+public class BingoController {
+
+    // Endpoint para criar um jogo
+    @PostMapping("/criar-jogo")
+    public Mono<String> criarJogo() {
+        // Lógica para criar um jogo
+        return Mono.just("Jogo criado com sucesso!");
+    }
+
+    // Endpoint para adicionar um jogador ao jogo
+    @PostMapping("/adicionar-jogador")
+    public Mono<String> adicionarJogador(@RequestBody Jogador jogador) {
+        // Lógica para adicionar um jogador ao jogo
+        return Mono.just("Jogador " + jogador.getNome() + " adicionado ao jogo.");
+    }
+
+    // Outros endpoints, como sortear números, marcar números, verificar vencedores, etc.
+}
+Passo 4: Serviços e Lógica de Negócios
+
+Crie serviços para implementar a lógica de negócios do jogo de bingo. Aqui você implementará as operações como sortear números, verificar se um jogador ganhou, etc.
+
+Passo 5: Banco de Dados (Opcional)
+
+Se você quiser persistir os dados do jogo, pode configurar um banco de dados. Utilize o Spring Data com um banco de dados de sua escolha, como o PostgreSQL ou o MongoDB.
+
+Passo 6: Testes
+
+Escreva testes unitários e de integração para garantir que sua API funcione conforme o esperado.
